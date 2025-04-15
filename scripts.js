@@ -23,75 +23,224 @@
  *
  */
 
-const FRESH_PRINCE_URL =
-  "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const CURB_POSTER_URL =
-  "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
-const EAST_LOS_HIGH_POSTER_URL =
-  "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
-
-// This is an array of strings (TV show titles)
-let titles = [
-  "Fresh Prince of Bel Air",
-  "Curb Your Enthusiasm",
-  "East Los High",
+// ----- Data -----
+const burmeseFoods = [
+  {
+    name: "Mohinga",
+    type: "Soup",
+    region: "Lower Myanmar",
+    spiceLevel: 3,
+    vegetarian: false,
+    image: "images/mohinga.jpg",
+    description: "Rice noodle fish soup—Myanmar’s national dish.",
+    wiki: "https://en.wikipedia.org/wiki/Mohinga"
+  },
+  {
+    name: "Laphet Thoke",
+    type: "Salad",
+    region: "Nationwide",
+    spiceLevel: 4,
+    vegetarian: true,
+    image: "images/laphet_thoke.jpg",
+    description: "Fermented tea leaf salad with crunchy toppings.",
+    wiki: "https://en.wikipedia.org/wiki/Laphet"
+  },
+  {
+    name: "Shan Noodles",
+    type: "Noodle Dish",
+    region: "Shan State",
+    spiceLevel: 2,
+    vegetarian: true,
+    image: "images/shan_noodles.jfif",
+    description: "Mild rice noodles with tomato-based sauce and herbs.",
+    wiki: "https://en.wikipedia.org/wiki/Burmese_noodles#Shan_noodles"
+  },
+  {
+    name: "Ohn No Khao Swe",
+    type: "Noodle Dish",
+    region: "Yangon Region",
+    spiceLevel: 2,
+    vegetarian: false,
+    image: "images/ohn_no_khao_swe.jpg",
+    description: "Coconut chicken noodle soup with crispy toppings.",
+    wiki: "https://en.wikipedia.org/wiki/Ohn_no_khao_swe"
+  },
+  {
+    name: "Rakhine Mote Ti",
+    type: "Rice Dish",
+    region: "Rakhine State",
+    spiceLevel: 3,
+    vegetarian: false,
+    image: "images/mote_ti.jpg",
+    description: "Spicy clear fish soup with thin rice noodle and fishcake",
+    wiki: "https://en.wikipedia.org/wiki/Rakhine_Monti"
+  },
+  {
+    name: "Tofu Nway",
+    type: "Tofu Dish",
+    region: "Shan State",
+    spiceLevel: 2,
+    vegetarian: true,
+    image: "images/tofu_nway.jpg",
+    description: "Warm tofu noodles topped with chickpea flour sauce.",
+    wiki: "https://en.wikipedia.org/wiki/Burmese_tofu"
+  },
+  {
+    name: "Kyay Oh",
+    type: "Noodle Soup",
+    region: "Nationwide",
+    spiceLevel: 1,
+    vegetarian: false,
+    image: "images/kyay_oh.jpg",
+    description: "Clear pork noodle soup with meatballs and egg.",
+    wiki: "https://en.wikipedia.org/wiki/Kyay_oh"
+  },
+  {
+    name: "Hta Min Chin",
+    type: "Fermented Rice Dish",
+    region: "Inle Lake",
+    spiceLevel: 2,
+    vegetarian: true,
+    image: "images/htamin_chin.jpg",
+    description: "Mashed fermented rice mixed with potatoes and garlic oil. Served with fried yellow tofu.",
+    wiki: "https://en.wikipedia.org/wiki/Burmese_cuisine"
+  },
+  {
+    name: "A Kyaw Sone",
+    type: "Fried Snack",
+    region: "Nationwide",
+    spiceLevel: 1,
+    vegetarian: true,
+    image: "images/kyaw_sone.jfif",
+    description: "Assorted Burmese fritters made from vegetables, lentils, and tofu—crispy and flavorful street food.",
+    wiki: "https://en.wikipedia.org/wiki/Burmese_cuisine"
+  },
+  {
+    name: "Mote Lin Ma Yar",
+    type: "Snack",
+    region: "Nationwide",
+    spiceLevel: 0,
+    vegetarian: true,
+    image: "images/mote_lin_mayar.webp",
+    description: "Mini rice cakes often called 'husband and wife snacks'.",
+    wiki: "https://en.wikipedia.org/wiki/Burmese_cuisine"
+  },
+  {
+    name: "A Sone Tote",
+    type: "Salad",
+    region: "Nationwide",
+    spiceLevel: 3,
+    vegetarian: true,
+    image: "images/sone_tote.jpg",
+    description: "A mix of stuffed and rolled vegetables, tossed with sesame, chili, and lime for a fresh, spicy salad.",
+    wiki: "https://en.wikipedia.org/wiki/Burmese_salads"
+  },
+  {
+    name: "Hta Min Tote",
+    type: "Rice Dish",
+    region: "Nationwide",
+    spiceLevel: 3,
+    vegetarian: true,
+    image: "images/hta_min_tote.webp",
+    description: "Cold rice mixed with roasted chili, lime, garlic oil, and seasonal herbs—a flavorful Burmese rice salad.",
+    wiki: "https://en.wikipedia.org/wiki/Burmese_cuisine"
+  },
+  {
+    name: "Nan Gyi Thoke",
+    type: "Noodle Dish",
+    region: "Mandalay",
+    spiceLevel: 3,
+    vegetarian: false,
+    image: "images/nan_gyi_thoke.jpg",
+    description: "Thick rice noodles mixed with chicken curry, toasted chickpea flour, onions, and chili oil—a hearty dry noodle salad.",
+    wiki: "https://en.wikipedia.org/wiki/Nan_gyi_thoke"
+  },
+  {
+    name: "Htamin Paung",
+    type: "Rice Dish",
+    region: "Nationwide",
+    spiceLevel: 0,
+    vegetarian: false,
+    image: "images/htamin_paung.jpg",
+    description: "Simple steamed rice served with a gravy topping including boiled peas, vegetables, fried onions, and chicken/pork.",
+    wiki: "https://en.wikipedia.org/wiki/Burmese_cuisine"
+  },
+  {
+    name: "Si Hta Min",
+    type: "Sweet Rice Dish",
+    region: "Nationwide",
+    spiceLevel: 0,
+    vegetarian: true,
+    image: "images/si_hta_min.jpg",
+    description: "Sticky glutinous rice cooked with turmeric, salt, and onions, served with roasted sesame seeds and fried onions.",
+    wiki: "https://en.wikipedia.org/wiki/Burmese_cuisine"
+  }
 ];
-// Your final submission should have much more data than this, and
-// you should use more than just an array of strings to store it all.
 
-// This function adds cards the page to display the data in the array
-function showCards() {
-  const cardContainer = document.getElementById("card-container");
-  cardContainer.innerHTML = "";
-  const templateCard = document.querySelector(".card");
+function displayFoods(foodList) {
+  const catalog = document.getElementById("catalog");
+  catalog.innerHTML = "";
 
-  for (let i = 0; i < titles.length; i++) {
-    let title = titles[i];
+  for (var i = 0; i < foodList.length; i++) {
+    var food = foodList[i];
 
-    // This part of the code doesn't scale very well! After you add your
-    // own data, you'll need to do something totally different here.
-    let imageURL = "";
-    if (i == 0) {
-      imageURL = FRESH_PRINCE_URL;
-    } else if (i == 1) {
-      imageURL = CURB_POSTER_URL;
-    } else if (i == 2) {
-      imageURL = EAST_LOS_HIGH_POSTER_URL;
-    }
+    var card = document.createElement("div");
+    card.className = "food-card";
 
-    const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, title, imageURL); // Edit title and image
-    cardContainer.appendChild(nextCard); // Add new card to the container
+    card.innerHTML =
+      '<img src="' + food.image + '" alt="' + food.name + '">' +
+      '<h3><a href="' + food.wiki + '" target="_blank">' + food.name + '</a></h3>' +
+      '<p><b>Type:</b> ' + food.type + '</p>' +
+      '<p><b>Region:</b> ' + food.region + '</p>' +
+      '<p><b>Spice Level:</b> ' + getSpiceIcons(food.spiceLevel) + '</p>' +
+      '<p>' + food.description + '</p>';
+
+    catalog.appendChild(card);
   }
 }
 
-function editCardContent(card, newTitle, newImageURL) {
-  card.style.display = "block";
-
-  const cardHeader = card.querySelector("h2");
-  cardHeader.textContent = newTitle;
-
-  const cardImage = card.querySelector("img");
-  cardImage.src = newImageURL;
-  cardImage.alt = newTitle + " Poster";
-
-  // You can use console.log to help you debug!
-  // View the output by right clicking on your website,
-  // select "Inspect", then click on the "Console" tab
-  console.log("new card:", newTitle, "- html: ", card);
+function getSpiceIcons(level) {
+  var spice = "";
+  for (var i = 0; i < level; i++) {
+    spice += "🌶️";
+  }
+  return spice;
 }
 
-// This calls the addCards() function when the page is first loaded
-document.addEventListener("DOMContentLoaded", showCards);
-
-function quoteAlert() {
-  console.log("Button Clicked!");
-  alert(
-    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
-  );
+function showAll() {
+  displayFoods(burmeseFoods);
 }
 
-function removeLastCard() {
-  titles.pop(); // Remove last item in titles array
-  showCards(); // Call showCards again to refresh
+function showVegetarian() {
+  var result = [];
+  for (var i = 0; i < burmeseFoods.length; i++) {
+    if (burmeseFoods[i].vegetarian) {
+      result.push(burmeseFoods[i]);
+    }
+  }
+  displayFoods(result);
 }
+
+function sortBySpice() {
+  var sorted_food = burmeseFoods.slice();
+  sorted_food.sort(function (a, b) {
+    return b.spiceLevel - a.spiceLevel;
+  });
+  displayFoods(sorted_food);
+}
+
+function searchFood() {
+  var query = document.getElementById("searchInput").value.toLowerCase();
+  var result = [];
+
+  for (var i = 0; i < burmeseFoods.length; i++) {
+    var name = burmeseFoods[i].name.toLowerCase();
+    if (name.indexOf(query) !== -1) {
+      result.push(burmeseFoods[i]);
+    }
+  }
+
+  displayFoods(result);
+}
+
+window.onload = showAll;
