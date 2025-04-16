@@ -10,12 +10,22 @@
   <header>
     <h1><img src="images/myanmar_flag.png" alt="🇲🇲" style="width: 48px;"> Burmese Traditional Foods 🍛</h1>
     <p>Explore and learn about authentic Burmese cuisine</p>
+    <button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+
   </header>
 
   <section id="controls">
+    <select id="typeFilter" onchange="filterByType()">
+      <option value="All">All Types</option>
+      <option value="Salad">Salad</option>
+      <option value="Noodle Dish">Noodle Dish</option>
+      <option value="Rice Dish">Rice Dish</option>
+      <option value="Snack">Snack</option>
+    </select>
     <button onclick="showAll()">Show All</button>
     <button onclick="showVegetarian()">Vegetarian Only</button>
     <button onclick="sortBySpice()">Sort by Spice Level</button>
+    <button onclick="sortByName()">Sort A-Z 🔤</button>
     <input type="text" id="searchInput" placeholder="Search by name..." oninput="searchFood()" />
   </section>
 

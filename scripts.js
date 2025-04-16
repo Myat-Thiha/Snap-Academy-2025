@@ -27,7 +27,7 @@
 const burmeseFoods = [
   {
     name: "Mohinga",
-    type: "Soup",
+    type: "Noodle Dish",
     region: "Lower Myanmar",
     spiceLevel: 3,
     vegetarian: false,
@@ -67,7 +67,7 @@ const burmeseFoods = [
   },
   {
     name: "Rakhine Mote Ti",
-    type: "Rice Dish",
+    type: "Noodle Dish",
     region: "Rakhine State",
     spiceLevel: 3,
     vegetarian: false,
@@ -77,7 +77,7 @@ const burmeseFoods = [
   },
   {
     name: "Tofu Nway",
-    type: "Tofu Dish",
+    type: "Noodle Dish",
     region: "Shan State",
     spiceLevel: 2,
     vegetarian: true,
@@ -87,7 +87,7 @@ const burmeseFoods = [
   },
   {
     name: "Kyay Oh",
-    type: "Noodle Soup",
+    type: "Noodle Dish",
     region: "Nationwide",
     spiceLevel: 1,
     vegetarian: false,
@@ -97,7 +97,7 @@ const burmeseFoods = [
   },
   {
     name: "Hta Min Chin",
-    type: "Fermented Rice Dish",
+    type: "Rice Dish",
     region: "Inle Lake",
     spiceLevel: 2,
     vegetarian: true,
@@ -107,7 +107,7 @@ const burmeseFoods = [
   },
   {
     name: "A Kyaw Sone",
-    type: "Fried Snack",
+    type: "Snack",
     region: "Nationwide",
     spiceLevel: 1,
     vegetarian: true,
@@ -167,7 +167,7 @@ const burmeseFoods = [
   },
   {
     name: "Si Hta Min",
-    type: "Sweet Rice Dish",
+    type: "Rice Dish",
     region: "Nationwide",
     spiceLevel: 0,
     vegetarian: true,
@@ -221,12 +221,36 @@ function showVegetarian() {
   displayFoods(result);
 }
 
+function filterByType() {
+  var selectedType = document.getElementById("typeFilter").value;
+
+  if (selectedType === "All") {
+    displayFoods(burmeseFoods);
+  } else {
+    var filtered = [];
+    for (var i = 0; i < burmeseFoods.length; i++) {
+      if (burmeseFoods[i].type === selectedType) {
+        filtered.push(burmeseFoods[i]);
+      }
+    }
+    displayFoods(filtered);
+  }
+}
+
 function sortBySpice() {
   var sorted_food = burmeseFoods.slice();
   sorted_food.sort(function (a, b) {
     return b.spiceLevel - a.spiceLevel;
   });
   displayFoods(sorted_food);
+}
+
+function sortByName() {
+  var sorted = burmeseFoods.slice();
+  sorted.sort(function(a, b) {
+    return a.name.localeCompare(b.name);
+  });
+  displayFoods(sorted);
 }
 
 function searchFood() {
@@ -241,6 +265,10 @@ function searchFood() {
   }
 
   displayFoods(result);
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
 }
 
 window.onload = showAll;

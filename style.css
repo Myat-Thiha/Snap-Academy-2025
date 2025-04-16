@@ -24,7 +24,7 @@ header h1 {
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem;
-  background-color: #fff5e6;
+  background-color: #f8efe3;
 }
 
 #controls button,
@@ -70,6 +70,13 @@ header h1 {
   margin: 0.3rem 0;
 }
 
+/* Type Filter */
+#typeFilter {
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -77,4 +84,55 @@ footer {
   background-color: #ffdfb3;
   color: #5c2c06;
   font-size: 0.9rem;
+}
+
+#darkModeToggle {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button:hover {
+  background-color: #ffe0b2;
+  box-shadow: 0 0 6px rgba(255, 192, 121, 0.4);
+  transition: all 0.3s ease;
+}
+
+body.dark-mode button:hover {
+  background-color: #5e433e;
+  box-shadow: 0 0 6px rgba(245, 201, 122, 0.4);
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #2b1e1c;
+  color: #f9f6f0;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #3d2e2b;
+  color: #f5c97a;
+}
+
+body.dark-mode #controls {
+  background-color: #4a3632;
+}
+
+body.dark-mode .food-card {
+  background-color: #3d2e2b;
+  border: 1px solid #f5c97a;
+  box-shadow: 0 0 8px rgba(245, 201, 122, 0.1);
+}
+
+body.dark-mode button,
+body.dark-mode input,
+body.dark-mode select {
+  background-color: #4a3632;
+  color: #fff0d6;
+  border: 1px solid #f5c97a;
+}
+
+body.dark-mode a {
+  color: #f5c97a;
 }
