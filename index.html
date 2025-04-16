@@ -14,7 +14,7 @@
 
   </header>
 
-  <section id="controls">
+  <div id="controls">
     <select id="typeFilter" onchange="filterByType()">
       <option value="All">All Types</option>
       <option value="Salad">Salad</option>
@@ -27,7 +27,7 @@
     <button onclick="sortBySpice()">Sort by Spice Level</button>
     <button onclick="sortByName()">Sort A-Z 🔤</button>
     <input type="text" id="searchInput" placeholder="Search by name..." oninput="searchFood()" />
-  </section>
+  </div>
 
   <main>
     <section id="catalog"></section>
